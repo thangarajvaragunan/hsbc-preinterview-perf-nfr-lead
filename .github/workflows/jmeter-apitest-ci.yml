@@ -52,9 +52,6 @@ jobs:
           ./jmeter/bin/jmeter \
             -n \
             -t tests/json_holder_public_apis_ci.jmx \
-            # -Jusers=${{ env.THREADS }} \
-            # -Jrampup=${{ env.RAMPUP }} \
-            # -Jduration=${{ env.DURATION }} \
             -l results/results.jtl \
             -e \
             -o results/dashboard   
