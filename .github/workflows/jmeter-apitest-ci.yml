@@ -8,7 +8,7 @@ on:
 
 env:
   THREADS: 25        # concurrent users
-  RAMPUP: 12         # seconds
+  RAMPUP: 120         # seconds
   DURATION: 300       # seconds
 
 jobs:
@@ -52,8 +52,8 @@ jobs:
           ./jmeter/bin/jmeter \
             -n \
             -t tests/json_holder_public_apis_ci.jmx \
-            -JconcurrentUsers=${{ env.THREADS }} \
-            -JrampUp=${{ env.RAMPUP }} \
+            -Jusers=${{ env.THREADS }} \
+            -Jrampup=${{ env.RAMPUP }} \
             -Jduration=${{ env.DURATION }} \
             -l results/results.jtl \
             -e \
