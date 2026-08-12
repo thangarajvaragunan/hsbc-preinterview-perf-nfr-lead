@@ -49,7 +49,39 @@ jobs:
             -t tests/json_holder_public_apis_ci.jmx \
             -l results/results.jtl \
             -e \
-            -o results/dashboard      
+            -o results/dashboard   
+
+      - name: Install Python dependencies
+        run: |
+          python3 -m pip install --upgrade pip
+          pip install pandas
+            
+      - name: Validate p95 SLA for each API
+        run: |
+          python3 - << 'EOF'
+          import pandas as pd
+      
+          df = pd.read_csv('results/results.jtl')
+      
+          # Group by API (sampler label)
+          apis = df.groupby('label')
+      
+          # SLA limit
+          SLA_P95 = 800
+      
+          overall_pass = True
+      
+          for api_name, api_data in apis:
+              p95 = api_data['elapsed'].quantile(0.95)
+              print(f"API: {api_name} → p95 = {p95} ms")
+      
+              if p95 > SLA_P95:
+                  print(f"❌ SLA breached for {api_name} (limit: {SLA_P95} ms)")
+                  overall_pass = False
+              else:
+                  print(f"✅ SLA passed for {api_name}")
+      
+          EOF
           
       - name: Upload Results
         uses: actions/upload-artifact@v4
