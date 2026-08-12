@@ -38,6 +38,10 @@ jobs:
           # Verify installation
           ls -la jmeter/bin
 
+      - name: Remove Results file if any
+        run:
+          rm -f results/results.jtl
+
       - name: Run JMeter Test
         run: |
           ./jmeter/bin/jmeter \
