@@ -26,5 +26,7 @@ This repo contains a Git Pipeline for executing a Jmeter test. This is a non-gui
 3. Include more performance test types (Stress, Soak, Spike)
 4. Integrate server side monitoring
 
+**What's Left**
+1. I have tried to parameterise and pass the user, rampup and duration via the pipeline but it failed. Due to time limitation, I've hard coded those values in the jmx file.
 
 
