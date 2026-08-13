@@ -1,4 +1,4 @@
-This repo contains a Git Pipeline for executing a Jmeter test. This is non-gui mode test targeting 3 public APIs, running with 25 concurrent users and 120 sec rampup
+This repo contains a Git Pipeline for executing a Jmeter test. This is a non-gui mode test targeting 3 public APIs, running with 25 concurrent users and 120 sec rampup for 5 mins
 1. Get - /posts
 2. GET - /posts/{id{
 3. POST - /post
